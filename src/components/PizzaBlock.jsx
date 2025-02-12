@@ -1,25 +1,59 @@
-const PizzaBlock = () => {
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
+
+const PizzaBlock = ({ category, id, imageUrl, price, rating, sizes, title, types }) => {
+    const sizesList = sizes.map((size) => {
+        return {
+            id: uuidv4(),
+            value: size,
+        };
+    });
+    const typesList = [
+        {
+            id: uuidv4(),
+            name: "тонкое",
+        },
+        {
+            id: uuidv4(),
+            name: "традиционное",
+        },
+    ];
+
+    const [activeSizeIndex, setActiveSizeIndex] = React.useState(0)
+    const [activeTypeIndex, setActiveTypeIndex] = React.useState(0);
+
     return (
         <div className="pizza-block">
-            <img
-                className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
-                alt="Pizza"
-            />
-            <h4 className="pizza-block__title">Чизбургер-пицца</h4>
+            <img className="pizza-block__image" src={imageUrl} alt={title} />
+            <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li className="active">тонкое</li>
-                    <li>традиционное</li>
+                    {sizesList.map((size, index) => {
+                        return (
+                            <li
+                                key={size.id}
+                                className={activeSizeIndex === index ? 'active' : ''}
+                                onClick={() => setActiveSizeIndex(index)}
+                            >{size.value} см.</li>
+                        )
+                    })}
                 </ul>
                 <ul>
-                    <li className="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {types.map((type, index) => {
+                        return (
+                            <li
+                                key={typesList[index].id}
+                                className={activeTypeIndex === index ? "active" : ""}
+                                onClick={() => setActiveTypeIndex(type)}
+                            >
+                                {typesList[index].name}
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от 395 ₽</div>
+                <div className="pizza-block__price">от {price} ₽</div>
                 <button type="button" className="button button--outline button--add">
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
