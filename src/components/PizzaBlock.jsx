@@ -8,18 +8,14 @@ const PizzaBlock = ({ category, id, imageUrl, price, rating, sizes, title, types
             value: size,
         };
     });
-    const typesList = [
-        {
+    const typesList = ["тонкое", "традиционное"].map((item) => {
+        return {
             id: uuidv4(),
-            name: "тонкое",
-        },
-        {
-            id: uuidv4(),
-            name: "традиционное",
-        },
-    ];
+            name: item,
+        };
+    });
 
-    const [activeSizeIndex, setActiveSizeIndex] = React.useState(0)
+    const [activeSizeIndex, setActiveSizeIndex] = React.useState(0);
     const [activeTypeIndex, setActiveTypeIndex] = React.useState(0);
 
     return (
@@ -28,28 +24,26 @@ const PizzaBlock = ({ category, id, imageUrl, price, rating, sizes, title, types
             <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    {sizesList.map((size, index) => {
-                        return (
-                            <li
-                                key={size.id}
-                                className={activeSizeIndex === index ? 'active' : ''}
-                                onClick={() => setActiveSizeIndex(index)}
-                            >{size.value} см.</li>
-                        )
-                    })}
+                    {sizesList.map((size, index) => (
+                        <li
+                            key={size.id}
+                            className={activeSizeIndex === index ? "active" : ""}
+                            onClick={() => setActiveSizeIndex(index)}
+                        >
+                            {size.value} см.
+                        </li>
+                    ))}
                 </ul>
                 <ul>
-                    {types.map((type, index) => {
-                        return (
-                            <li
-                                key={typesList[index].id}
-                                className={activeTypeIndex === index ? "active" : ""}
-                                onClick={() => setActiveTypeIndex(type)}
-                            >
-                                {typesList[index].name}
-                            </li>
-                        );
-                    })}
+                    {types.map((type, index) => (
+                        <li
+                            key={typesList[index].id}
+                            className={activeTypeIndex === index ? "active" : ""}
+                            onClick={() => setActiveTypeIndex(type)}
+                        >
+                            {typesList[index].name}
+                        </li>
+                    ))}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
