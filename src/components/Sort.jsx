@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const Sort = () => {
+export const Sort = () => {
     const popupList = ["популярности", "цене", "алфавиту"].map((item) => {
         return { id: uuidv4(), value: item };
     });
@@ -42,5 +42,3 @@ const Sort = () => {
         </div>
     );
 };
-
-export default Sort;

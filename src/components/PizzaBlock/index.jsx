@@ -1,7 +1,7 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-const PizzaBlock = ({ category, id, imageUrl, price, rating, sizes, title, types }) => {
+export const PizzaBlock = ({ category, id, imageUrl, price, rating, sizes, title, types }) => {
     const sizesList = sizes.map((size) => {
         return {
             id: uuidv4(),
@@ -62,5 +62,3 @@ const PizzaBlock = ({ category, id, imageUrl, price, rating, sizes, title, types
         </div>
     );
 };
-
-export default PizzaBlock;
